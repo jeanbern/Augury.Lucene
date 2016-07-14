@@ -36,7 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoundedJaroWinkler.cs" />
+    <Compile Include="BoundedJaroWinklerSerializer.cs" />
     <Compile Include="JaroWinkler.cs" />
+    <Compile Include="JaroWinklerSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
