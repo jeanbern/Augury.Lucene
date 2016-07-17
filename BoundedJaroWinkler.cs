@@ -54,6 +54,16 @@ namespace Augury.Lucene
         /// <returns>The bounded similarity score.</returns>
         public override double Similarity(string x, string y)
         {
+            if (x == y)
+            {
+                return 1;
+            }
+
+            if (x == null || y == null)
+            {
+                return 0;
+            }
+
             string min, max;
             OrderStrings(x, y, out min, out max);
             var maxLen = max.Length;
@@ -69,6 +79,11 @@ namespace Augury.Lucene
             int matchesInt, transpositions;
             Matches(min, max, out matchesInt, out transpositions);
 
+            if (matchesInt == 0)
+            {
+                return 0;
+            }
+
             if (matchesInt == 0) { return (prefix / (double)minLen + prefix / (double)maxLen) / 3.0; }
 
             var matches = (double)matchesInt;
@@ -79,7 +94,6 @@ namespace Augury.Lucene
             var weighingFactor = Math.Min(0.1, 1.0 / maxLen);
             var jw = j + weighingFactor * prefix * (1 - j);
             return jw;
-
         }
     }
 }

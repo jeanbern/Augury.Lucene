@@ -21,8 +21,6 @@ namespace Augury.Lucene
             {
                 max = y;
                 min = x;
-                minLen = maxLen;
-                maxLen = max.Length;
             }
         }
 
@@ -48,20 +46,34 @@ namespace Augury.Lucene
         /// <summary>
         /// Returns the similarity between two words.
         /// </summary>
-        /// <param name="x">The first word.</param>
-        /// <param name="y">The second word.</param>
+        /// <param name="s1">The first word.</param>
+        /// <param name="s2">The second word.</param>
         /// <returns>The similarity score.</returns>
         public virtual double Similarity(string s1, string s2)
         {
+            if (s1 == s2)
+            {
+                return 1;
+            }
+
+            if (s1 == null || s2 == null)
+            {
+                return 0;
+            }
+
             string min, max;
             OrderStrings(s1, s2, out min, out max);
             var maxLen = max.Length;
-            var minLen = min.Length;
 
             var prefix = SharedPrefixLength(min, max);
 
             int matchesInt, transpositions;
             Matches(min, max, out matchesInt, out transpositions);
+
+            if (matchesInt == 0)
+            {
+                return 0;
+            }
 
             var matches = (double)matchesInt;
             var j = (matches / s1.Length + matches / s2.Length + (matches - transpositions) / matches) / 3.0;
