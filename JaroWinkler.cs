@@ -146,5 +146,25 @@ namespace Augury.Lucene
                 }
             }
         }
+
+        public override int GetHashCode()
+        {
+            return 397 * GetType().GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+            {
+                return true;
+            }
+
+            if (null == obj)
+            {
+                return false;
+            }
+
+            return GetType() == obj.GetType();
+        }
     }
 }

@@ -39,6 +39,10 @@
     <Compile Include="BoundedJaroWinklerSerializer.cs" />
     <Compile Include="JaroWinkler.cs" />
     <Compile Include="JaroWinklerSerializer.cs" />
+    <Compile Include="LevenshteinDistance.cs" />
+    <Compile Include="LevenshteinDistanceSerializer.cs" />
+    <Compile Include="NGramDistance.cs" />
+    <Compile Include="NGramDistanceSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

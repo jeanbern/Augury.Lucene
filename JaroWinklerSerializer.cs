@@ -2,7 +2,7 @@
 
 namespace Augury.Lucene
 {
-    class JaroWinklerSerializer : StatelessClassSerializationBase<JaroWinkler>
+    public class JaroWinklerSerializer : StatelessClassSerializationBase<JaroWinkler>
     {
     }
 }

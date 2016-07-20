@@ -11,6 +11,7 @@ namespace Augury.Lucene
     /// Kevin Dreßler and Axel-Cyrille Ngonga Ngomo
     /// University of Leipzig
     /// </see>
+    /// <remarks>Significantly modified from the Lucene original.</remarks>
     public class BoundedJaroWinkler : JaroWinkler
     {
         protected const int MaxWordSize = 35;
@@ -94,6 +95,26 @@ namespace Augury.Lucene
             var weighingFactor = Math.Min(0.1, 1.0 / maxLen);
             var jw = j + weighingFactor * prefix * (1 - j);
             return jw;
+        }
+
+        public override int GetHashCode()
+        {
+            return 397 * GetType().GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+            {
+                return true;
+            }
+
+            if (null == obj)
+            {
+                return false;
+            }
+
+            return GetType() == obj.GetType();
         }
     }
 }
